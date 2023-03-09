@@ -11,4 +11,5 @@ export interface ICardProduct {
     luas_bangunan: number;
     jumlah_kamar: number;
     jumlah_kamar_mandi: number;
+    book: () => void;
 }

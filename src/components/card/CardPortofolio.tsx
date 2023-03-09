@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function CardPortofolio({ id, title, description, image, jumlah_unit, sisa_unit, jumlah_unit_terjual }: ICardPortofolio) {
     return <>
-        <div id={id} className="flex flex-col">
+        <div id={id} className="flex flex-col hover:scale-105 ease-in duration-500">
             <div className="flex px-2 pt-2 pb-1 mb-2 justify-center">
                 <Image src={image} alt="imgPortofolio" className="rounded-2xl drop-shadow-md" style={{ height: '280px', width: '100%' }}></Image>
             </div>

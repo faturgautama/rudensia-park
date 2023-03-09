@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowPointer } from '@fortawesome/free-solid-svg-icons'
+
 export default function Footer() {
     return <>
         <div className="flex h-52 bg-gray-100 p-10 gap-3">
@@ -61,7 +64,7 @@ export default function Footer() {
                     Media Sosial
                 </p>
                 <p className="text-gray-500 text-sm mb-2">
-                    Beranda
+                    <FontAwesomeIcon icon={faArrowPointer} />
                 </p>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { ICardService } from "@/models/CardService";
 
 export default function CardService(props: ICardService) {
     return <>
-        <div className="flex flex-col rounded-xl drop-shadow-md bg-white w-100 px-10 py-10">
+        <div className="flex flex-col rounded-xl drop-shadow-md bg-white w-100 px-10 py-10 hover:scale-105 ease-in duration-500">
             <span className="text-center mb-3">
                 {props.icon}
             </span>

@@ -34,7 +34,7 @@ export default function CardProduct(props: ICardProduct) {
                 <p className='text-emerald-500 text-sm font-semibold'>
                     <span className='font-normal text-gray-400'>Mulai</span> {props.price}
                 </p>
-                <button className='bg-emerald-400 p-2 rounded-lg text-white text-xs'>
+                <button className='bg-emerald-400 p-2 rounded-lg text-white text-xs' onClick={props.book}>
                     Book Now
                 </button>
             </div>

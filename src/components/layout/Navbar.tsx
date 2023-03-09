@@ -1,7 +1,6 @@
-import { Menu, MenuProps } from "antd";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { handleClickWhatsapp } from '../../providers/Utility.provider';
 
 export default function Navbar() {
     const router = useRouter();
@@ -61,6 +60,10 @@ export default function Navbar() {
         console.log(current);
     }, [current]);
 
+    const handleClickHubungi = () => {
+        handleClickWhatsapp('normal');
+    }
+
     return (
         <>
             <nav className="lg:py-2 lg:px-2 py-3 px-2 fixed w-screen bg-white z-10 drop-shadow-sm">
@@ -69,7 +72,7 @@ export default function Navbar() {
                         Rudensia Park
                     </p>
                     <div className="flex md:order-2">
-                        <button className="bg-emerald-400 text-white px-3 py-2 rounded-md text-sm hover:bg-emerald-500 transition ease-in-out duration-300">
+                        <button className="bg-emerald-400 text-white px-3 py-2 rounded-md text-sm hover:bg-emerald-500 transition ease-in-out duration-300" onClick={handleClickHubungi}>
                             Hubungi Kami
                         </button>
                         <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false" onClick={handleSetToggleNavbar}>
