@@ -566,8 +566,8 @@ export default function Home() {
                         <div className="flex flex-col w-1/3">
                             {hasil && <p className='text-lg text-gray-600 mb-5'>Estimasi Cicilan KPR Anda</p>}
                             {
-                                hasil && hasil.map((item: any) => (
-                                    <div className="flex mb-2 gap-2 border-b border-b-gray-100">
+                                hasil && hasil.map((item: any, index: number) => (
+                                    <div key={index} className="flex mb-2 gap-2 border-b border-b-gray-100">
                                         <p className='text-gray-500 mr-2 text-sm'>
                                             Cicilan Ke-{item.cicilan_ke}
                                         </p>
