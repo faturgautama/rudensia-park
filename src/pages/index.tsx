@@ -30,9 +30,16 @@ import bgCirlce from '../../public/bg/setengahLingkaran.png';
 import bgKotak from '../../public/bg/kotak.png';
 import { handleClickWhatsapp } from '../providers/Utility.provider';
 import { Form } from 'antd';
+import { useMediaQuery } from 'react-responsive';
+import MediaQuery from 'react-responsive';
 
 export default function Home() {
+    const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+
     const swiperRef = useRef();
+
+    const serviceSwiperRef = useRef();
 
     const handleClickSeeProduct = () => {
         const el = document.getElementById('produk_rumah') as HTMLElement;
@@ -143,6 +150,18 @@ export default function Home() {
         },
     ];
 
+    const handleChangeSlideSwiperService = (action: 'left' | 'right') => {
+        // const swiper = serviceSwiperRef.current as any;
+
+        console.log(serviceSwiperRef)
+
+        // if (action == 'left') {
+        //     swiper.slidePrev();
+        // } else {
+        //     swiper.slideNext();
+        // }
+    };
+
     const portofolio: ICardPortofolio[] = [
         { id: '1', title: 'Villa Rudensia', description: 'Cluster Modern Berkualitas', image: rumahImage, jumlah_unit: 200, jumlah_unit_terjual: 192, sisa_unit: 8 },
         { id: '2', title: 'Grand Rudensia', description: 'Hunian Nyaman Bernuansa Sejuk', image: rumahImage, jumlah_unit: 200, jumlah_unit_terjual: 192, sisa_unit: 8 },
@@ -217,19 +236,24 @@ export default function Home() {
     };
 
     return (
-        <>
+        <div>
             <LandingPage>
                 {/* Banner */}
-                <div id="beranda" className="flex mb-10 pt-24">
-                    <div className="flex flex-col mx-8 rounded-xl h-72 shadow-sm pt-8 items-center bg-gray-50 w-full"
-                        style={{ backgroundImage: `url(${bg.src})`, backgroundPosition: 'top', backgroundSize: 'cover' }}>
-                        <p className='text-gray-500 text-5xl font-extrabold mb-1' data-aos="fade-up" data-aos-duration="1000">
+                <div id="beranda" className="flex mb-10 pt-20 md:pt-24">
+                    <div className="flex flex-col mx-2 md:mx-8 rounded-xl md:h-72 shadow-sm py-8 md:pt-8 items-center bg-gray-50 w-full"
+                        style={{
+                            background: `url(${bg.src}), linear-gradient(240deg, rgb(232 232 232) 25%, rgb(232 232 232) 50%, rgb(232 232 232) 100%)`,
+                            backgroundPosition: 'top',
+                            backgroundSize: 'cover',
+                            backgroundBlendMode: 'overlay'
+                        }}>
+                        <p className='text-gray-500 text-2xl md:text-5xl font-extrabold mb-0 md:mb-1' data-aos="fade-up" data-aos-duration="1000">
                             Semua bisa punya rumah
                         </p>
-                        <p className='text-gray-500 text-5xl font-extrabold mb-3' data-aos="fade-up" data-aos-duration="1300">
+                        <p className='text-gray-500 text-2xl md:text-5xl font-extrabold mb-3' data-aos="fade-up" data-aos-duration="1300">
                             hanya di <span className='text-emerald-400'>Rudensia Park</span>
                         </p>
-                        <p className='text-gray-500 text-base mb-2' data-aos="fade-up" data-aos-duration="1500">
+                        <p className='text-gray-500 text-xs mb-5 md:mb-2 text-center' data-aos="fade-up" data-aos-duration="1500">
                             Lagi Cari Rumah Yang Asri dan Sejuk? Kami adalah jawabannya
                         </p>
                         <div className='flex flex-row gap-3' >
@@ -245,58 +269,54 @@ export default function Home() {
 
                 {/* Trusted By */}
                 <div className="flex flex-col items-center justify-center mb-10">
-                    <p className='text-base text-gray-400' data-aos="fade-up" data-aos-duration="1900">
+                    <p className='md:text-base text-sm text-gray-400' data-aos="fade-up" data-aos-duration="1900">
                         Dipercaya lebih dari 200+ customer &
                     </p>
-                    <p className='text-base text-gray-400 mb-10' data-aos="fade-up" data-aos-duration="1900">
+                    <p className='md:text-base text-sm text-gray-400 md:mb-10 mb-5' data-aos="fade-up" data-aos-duration="1900">
                         bekerja sama dengan
                     </p>
 
-                    <div className="flex gap-20">
-                        <Image src={Mandiri} alt='Mandiri' width={150} height={150} data-aos="fade-right" data-aos-duration="1910"></Image>
-                        <Image src={BNI} alt='BNI' width={150} height={150} data-aos="fade-right" data-aos-duration="1920"></Image>
-                        <Image src={BTN} alt='BTN' width={150} height={150} data-aos="fade-right" data-aos-duration="1930"></Image>
-                        <Image src={BRI} alt='BRI' width={150} height={150} data-aos="fade-right" data-aos-duration="1940"></Image>
+                    <div className="flex gap-5 md:gap-20">
+                        <Image src={Mandiri} alt='Mandiri' className='md:w-32 w-16' data-aos="fade-right" data-aos-duration="1910"></Image>
+                        <Image src={BNI} alt='BNI' className='md:w-32 w-16' data-aos="fade-right" data-aos-duration="1920"></Image>
+                        <Image src={BTN} alt='BTN' className='md:w-32 w-16' data-aos="fade-right" data-aos-duration="1930"></Image>
+                        <Image src={BRI} alt='BRI' className='md:w-32 w-16' data-aos="fade-right" data-aos-duration="1940"></Image>
                     </div>
                 </div>
 
                 {/* Our Service */}
-                <div id="tentang_kami" className="flex flex-col mx-8 p-5 bg-gray-50 rounded-xl mb-0">
-                    <Image src={bgDots} alt="dots" style={{
-                        position: "absolute",
-                        width: "5rem",
-                        right: "30rem",
-                        transform: "rotateZ(90deg)",
-                        top: "38rem",
-                    }}></Image>
+                <div id="tentang_kami" className="flex flex-col mx-2 md:mx-8 p-5 bg-gray-50 rounded-xl mb-0">
+                    <Image src={bgDots} alt="dots" className='img_dots_service'></Image>
 
-                    <Image src={bgCirlce} alt="setengahLingkaran" style={{
-                        position: "absolute",
-                        width: "5rem",
-                        top: "43rem",
-                        right: "45rem"
-                    }}></Image>
+                    <Image src={bgCirlce} alt="setengahLingkaran" className='img_circle_service'></Image>
 
-                    <Image src={bgKotak} alt="kotak" style={{
-                        position: "absolute",
-                        width: "1rem",
-                        top: "40rem",
-                        right: "10rem"
-                    }}></Image>
+                    <Image src={bgKotak} alt="kotak" className='img_kotak_service'></Image>
 
-                    <div className="flex flex-col mb-5" data-aos='fade-right' data-aos-duration="1000">
-                        <Badge caption='Our Service'></Badge>
+                    <div className="flex items-center md:items-start justify-between flex-row md:flex-col mb-5" data-aos='fade-right' data-aos-duration="1000">
+                        <div className="flex flex-col">
+                            <Badge caption='Our Service'></Badge>
 
-                        <p className='text-gray-600 text-xl font-semibold mt-2 mb-1'>
-                            Developer Terpercaya
-                        </p>
+                            <p className='text-gray-600 text-base md:text-xl font-semibold mt-2 mb-1'>
+                                Developer Terpercaya
+                            </p>
 
-                        <p className='text-gray-500 text-xs '>
-                            Layanan terbaik hanya untuk Anda
-                        </p>
+                            <p className='text-gray-500 text-xs '>
+                                Layanan terbaik hanya untuk Anda
+                            </p>
+
+                        </div>
+
+                        <div className="flex md:hidden md:gap-5 gap-2">
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperService('left')}>
+                                <LeftOutlined />
+                            </button>
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperService('right')}>
+                                <RightOutlined />
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="grid grid-flow-col columns-4 gap-5" data-aos='fade-right' data-aos-duration="1000">
+                    <div className="md:grid hidden grid-flow-col columns-4 gap-5" data-aos='fade-right' data-aos-duration="1000">
                         {
                             services.map((item, index) => (
                                 <div key={item.id} className="w-full">
@@ -305,31 +325,48 @@ export default function Home() {
                             ))
                         }
                     </div>
+
+                    <div className="md:hidden flex" data-aos='fade-right' data-aos-duration="1000">
+                        <Swiper spaceBetween={30} slidesPerView={1} onSwiper={(swiper) => { serviceSwiperRef.current = swiper as any }}>
+                            {
+                                services.map((item, index) => (
+                                    <SwiperSlide key={item.id} className="bg-transparent mb-2">
+                                        <CardService id={item.id} description={item.description} title={item.title} icon={item.icon}></CardService>
+                                    </SwiperSlide>
+                                ))
+                            }
+                        </Swiper>
+                    </div>
                 </div>
 
                 {/* Our Portofolio */}
-                <div id="portofolio_kami" className="flex flex-col mx-8 p-10 mb-0">
-                    <Image src={bgDots} alt="dots" style={{
-                        position: "absolute",
-                        width: "10rem",
-                        right: "0",
-                        top: "70rem",
-                    }}></Image>
+                <div id="portofolio_kami" className="flex flex-col mx-2 md:mx-8 p-5 md:p-10 mb-0">
+                    <Image src={bgDots} alt="dots" className='img_dots_portofolio'></Image>
 
+                    <div className="flex items-center md:items-start justify-between flex-row md:flex-col mb-5" data-aos='fade-down' data-aos-duration="1000">
+                        <div className="flex flex-col">
+                            <Badge caption='Our Portofolio'></Badge>
 
-                    <div className="flex flex-col mb-5" data-aos='fade-down' data-aos-duration="1000">
-                        <Badge caption='Our Portofolio'></Badge>
+                            <p className='text-gray-600 text-base md:text-xl font-semibold mt-2 mb-1'>
+                                Portofolio Kami
+                            </p>
 
-                        <p className='text-gray-600 text-xl font-semibold mt-2 mb-1'>
-                            Portofolio Kami
-                        </p>
+                            <p className='text-gray-500 text-xs '>
+                                Inovasi hunian berkualitas dari kami
+                            </p>
+                        </div>
 
-                        <p className='text-gray-500 text-xs '>
-                            Inovasi hunian berkualitas dari kami
-                        </p>
+                        <div className="flex md:hidden md:gap-5 gap-2">
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperService('left')}>
+                                <LeftOutlined />
+                            </button>
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperService('right')}>
+                                <RightOutlined />
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="flex flex-row justify-center gap-5" data-aos='fade-down' data-aos-duration="1000">
+                    <div className="hidden md:flex flex-row justify-center gap-5" data-aos='fade-down' data-aos-duration="1000">
                         {
                             portofolio.map((item) => (
                                 <div key={item.id} className="w-1/4">
@@ -338,31 +375,31 @@ export default function Home() {
                             ))
                         }
                     </div>
+
+                    <div className="md:hidden flex">
+                        <Swiper spaceBetween={30} slidesPerView={1} onSwiper={(swiper) => { console.log(swiper) }}>
+                            {
+                                portofolio.map((item) => (
+                                    <SwiperSlide key={item.id} className="bg-transparent mb-2">
+                                        <CardPortofolio {...item}></CardPortofolio>
+                                    </SwiperSlide>
+                                ))
+                            }
+                        </Swiper>
+                    </div>
                 </div>
 
                 {/* Our Product */}
-                <div id="produk_rumah" className="flex flex-col mx-8 p-10 bg-gray-50 rounded-xl mb-5">
-                    <Image src={bgDots} alt="dots" style={{
-                        position: "absolute",
-                        width: "6rem",
-                        right: "30rem",
-                        transform: "rotateZ(90deg)",
-                        top: "99rem",
-                    }}></Image>
+                <div id="produk_rumah" className="flex flex-col mx-2 md:mx-8 p-5 md:p-10 bg-gray-50 rounded-xl mb-5">
+                    <Image src={bgDots} alt="dots" className='img_dots_product'></Image>
 
-                    <Image src={bgCirlce} alt="setengahLingkaran" style={{
-                        position: "absolute",
-                        width: "5rem",
-                        top: "105rem",
-                        right: "45rem"
-                    }}></Image>
-
+                    <Image src={bgCirlce} alt="setengahLingkaran" className='img_cirlce_product'></Image>
 
                     <div className="flex flex-row mb-5 justify-between items-center" >
                         <div className="flex flex-col" data-aos='fade-left' data-aos-duration="1000">
                             <Badge caption='Our Product'></Badge>
 
-                            <p className='text-gray-600 text-xl font-semibold mt-2 mb-1'>
+                            <p className='text-gray-600 text-base md:text-xl font-semibold mt-2 mb-1'>
                                 Hunian Terpopuler
                             </p>
 
@@ -371,18 +408,18 @@ export default function Home() {
                             </p>
                         </div>
 
-                        <div className="flex mr-10 gap-5">
-                            <button className='bg-emerald-100 p-2 rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperProduct('left')}>
+                        <div className="flex mr-2 md:mr-10 gap-2 md:gap-5">
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg  rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperProduct('left')}>
                                 <LeftOutlined />
                             </button>
-                            <button className='bg-emerald-100 p-2 rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperProduct('right')}>
+                            <button className='bg-emerald-100 p-2 text-xs md:text-lg  rounded-lg text-emerald-400' onClick={() => handleChangeSlideSwiperProduct('right')}>
                                 <RightOutlined />
                             </button>
                         </div>
                     </div>
 
                     <div className="flex flex-row justify-center gap-5" data-aos='fade-left' data-aos-duration="1000">
-                        <Swiper spaceBetween={30} slidesPerView={4} onSwiper={(swiper) => { swiperRef.current = swiper as any }}>
+                        <Swiper spaceBetween={30} slidesPerView={isDesktopOrLaptop ? 4 : 1} onSwiper={(swiper) => { swiperRef.current = swiper as any }}>
                             {
                                 rumah.map((item) => (
                                     <SwiperSlide key={item.id} className="bg-transparent mb-2">
@@ -407,7 +444,7 @@ export default function Home() {
                 </div>
 
                 {/* Virtual Tour */}
-                <div id="virtual_tour" className='flex flex-col mx-8 p-10 rounded-xl'>
+                <div id="virtual_tour" className='flex flex-col mx-2 md:mx-8 p-5 md:p-10 rounded-xl'>
                     <Image src={bgDots} alt="dots" style={{
                         position: "absolute",
                         width: "10rem",
@@ -415,8 +452,8 @@ export default function Home() {
                         top: "160rem",
                     }}></Image>
 
-                    <div className="flex flex-row mb-5 gap-10" >
-                        <div className="flex flex-col mb-5 w-1/3" data-aos='fade-left' data-aos-duration="1000">
+                    <div className="flex flex-col md:flex-row mb-5 gap-2 md:gap-10" >
+                        <div className="flex flex-col mb-5 w-full md:w-1/3" data-aos='fade-left' data-aos-duration="1000">
                             <Badge caption='Virtual Tour'></Badge>
 
                             <p className='text-gray-600 text-xl font-semibold mt-2 mb-1'>
@@ -448,7 +485,7 @@ export default function Home() {
                             </p>
                         </div>
 
-                        <div className="flex flex-row justify-center w-2/3" data-aos='fade-left' data-aos-duration="1000">
+                        <div className="flex flex-row justify-center w-full md:w-2/3" data-aos='fade-left' data-aos-duration="1000">
                             <iframe
                                 src={streetViewSrc}
                                 width="100%"
@@ -463,7 +500,7 @@ export default function Home() {
                 </div>
 
                 {/* Gallery */}
-                <div className="flex flex-col mx-8 p-10 bg-gray-50 rounded-xl">
+                <div className="flex flex-col mx-2 md:mx-8 p-5 md:p-10 bg-gray-50 rounded-xl">
                     <div className="flex flex-col mb-5" data-aos='fade-up' data-aos-duration="1000">
                         <Badge caption='Our Gallery'></Badge>
 
@@ -476,7 +513,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-5" data-aos='fade-up' data-aos-duration="1000">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-5" data-aos='fade-up' data-aos-duration="1000">
                         {
                             gallery.map((item, index) => (
                                 <Image key={index} className='rounded-xl w-full' src={item} alt="imgGallery"></Image>
@@ -486,50 +523,27 @@ export default function Home() {
                 </div>
 
                 {/* FAQ */}
-                <div className="flex mx-8 p-10 justify-center gap-10 mb-10">
-                    <Image src={bgDots} alt="dots" style={{
-                        position: "absolute",
-                        width: "10rem",
-                        right: "0",
-                        top: "225rem",
-                    }}></Image>
+                <div className="flex mx-2 md:mx-8 p-5 md:p-10 justify-center md:gap-10 mb-10">
+                    <Image src={bgDots} alt="dots" className='img_dots_faq'></Image>
 
-                    <Image src={bgKotak} alt="kotak" style={{
-                        position: "absolute",
-                        width: "1rem",
-                        top: "230rem",
-                        left: "5rem",
-                        transform: "rotate(45deg)"
-                    }}></Image>
+                    <Image src={bgKotak} alt="kotak" className='img_kotak_1_faq'></Image>
 
-                    <Image src={bgKotak} alt="kotak" style={{
-                        position: "absolute",
-                        width: "1rem",
-                        top: "231rem",
-                        left: "6rem",
-                        transform: "rotate(45deg)"
-                    }}></Image>
+                    <Image src={bgKotak} alt="kotak" className='img_kotak_2_faq'></Image>
 
-                    <Image src={bgKotak} alt="kotak" style={{
-                        position: "absolute",
-                        width: "1rem",
-                        top: "232rem",
-                        left: "5rem",
-                        transform: "rotate(45deg)"
-                    }}></Image>
+                    <Image src={bgKotak} alt="kotak" className='img_kotak_3_faq'></Image>
 
-                    <div className="grid w-1/4" data-aos='fade-right' data-aos-duration="1000">
+                    <div className="hidden md:grid w-1/4" data-aos='fade-right' data-aos-duration="1000">
                         <Image
                             src={faqImage}
                             alt="image"
                             className='shadow-lg drop-shadow-lg'
                             style={{ borderRadius: '20rem 20rem 3% 3%', height: '500px' }}></Image>
                     </div>
-                    <div className="flex flex-col w-2/4" data-aos='fade-right' data-aos-duration="1000">
-                        <p className='text-emerald-400 font-semibold text-4xl mb-2'>
+                    <div className="flex flex-col w-full md:w-2/4" data-aos='fade-right' data-aos-duration="1000">
+                        <p className='text-emerald-400 font-semibold text-xl md:text-4xl mb-2'>
                             Frequently Asked Questions
                         </p>
-                        <p className='text-gray-700 text-sm mb-5'>
+                        <p className='text-gray-700 text-xs md:text-sm mb-2 md:mb-5'>
                             Semua yang perlu Anda ketahui tentang hunian kami ada disini.<br></br>
                             Jika Anda memiliki pertanyaan, hubungi kami.
                         </p>
@@ -538,7 +552,7 @@ export default function Home() {
                             {
                                 faq.map((item) => (
                                     <Panel header={item.question} key={item.id} className='text-gray-500'>
-                                        <p className='text-gray-500'>{item.answer}</p>
+                                        <p className='text-gray-600 text-xs md:text-base'>{item.answer}</p>
                                     </Panel>
                                 ))
                             }
@@ -548,7 +562,7 @@ export default function Home() {
                 </div>
 
                 {/* Simulasi KPR */}
-                <div id="simulasi_kpr" className="flex flex-col p-10 mb-5 bg-gray-50">
+                <div id="simulasi_kpr" className="flex flex-col p-5 md:p-10 mb-5 bg-gray-50">
                     <div className="flex flex-col mb-5" data-aos='fade-up' data-aos-duration="1000">
                         <Badge caption='Simulasi KPR'></Badge>
 
@@ -566,7 +580,7 @@ export default function Home() {
                         <div className="flex w-full" data-aos='fade-up' data-aos-duration="1000"    >
                             <Form name='simulasi_kpr' className='w-full' labelCol={{ span: 7 }} wrapperCol={{ span: 24 }} onFinish={handleCountKpr}>
                                 <Row>
-                                    <Col span={12}>
+                                    <Col span={isTabletOrMobile ? 32 : 12}>
                                         <Form.Item
                                             label="Harga Rumah"
                                             name="harga_rumah"
@@ -598,20 +612,20 @@ export default function Home() {
                                             <InputNumber min={1} max={100} className="w-full"></InputNumber>
                                         </Form.Item>
 
-                                        <Form.Item wrapperCol={{ offset: 17, span: 0 }} className="text-right">
+                                        <Form.Item wrapperCol={{ offset: isTabletOrMobile ? 0 : 17, span: 0 }} className="text-right">
                                             <button className='bg-emerald-500 p-2 rounded-xl text-white text-sm ml-auto' type='submit'>
                                                 Hitung Angsuran KPR
                                             </button>
                                         </Form.Item>
                                     </Col>
-                                    <Col span={12}>
+                                    <Col span={isTabletOrMobile ? 32 : 12}>
                                         <div className="flex flex-col mb-3">
                                             <p className='text-gray-600 text-center text-lg font-semibold'>
                                                 Estimasi Angsuran Per Bulan
                                             </p>
                                         </div>
 
-                                        <div className="flex flex-row justify-between mx-20 bg-gray-200 py-3 px-10 rounded-xl">
+                                        <div className="flex flex-row justify-between mx-0 md:mx-20 bg-gray-200 py-3 px-5 md:px-10 rounded-xl">
                                             <p className='text-emerald-600'>
                                                 Angsuran Per Bulan
                                             </p>
@@ -620,40 +634,38 @@ export default function Home() {
                                             </p>
                                         </div>
 
-                                        <div className="flex flex-row justify-center mx-12  py-3 px-10">
+                                        <div className="flex flex-row justify-center mx-0 md:mx-12 py-3 px-5 md:px-10 text-center">
                                             <p className='text-gray-600 text-xs'>
                                                 Estimasi di atas hanya perhitungan dengan suku bunga tetap (fixed)
                                             </p>
                                         </div>
                                     </Col>
                                 </Row>
-
-
                             </Form>
                         </div>
                     </div>
                 </div>
 
                 {/* Get In Touch */}
-                <div className="flex flex-col mx-8 p-14 bg-emerald-400 rounded-xl mb-0" data-aos='fade-down' data-aos-duration="1000">
+                <div className="flex flex-col mx-2 md:mx-8 p-5 md:p-14 bg-emerald-400 rounded-xl mb-0" data-aos='fade-down' data-aos-duration="1000">
                     <div className="flex w-full justify-center mb-2">
-                        <p className='text-4xl font-bold text-white'>
+                        <p className='text-lg md:text-4xl font-bold text-white'>
                             Tetap Terhubung Dengan Kami
                         </p>
                     </div>
 
-                    <div className="flex w-full justify-center mb-5">
-                        <p className='font text-gray-100'>
+                    <div className="flex w-full justify-center mb-5 text-center">
+                        <p className='text-xs md:text-base text-gray-100'>
                             Dengan Sepenuh Hati, Kami Akan Membantu Anda Mewujudkan Hunian Impian Anda
                         </p>
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="flex w-1/2 gap-4 justify-center">
-                            <button className='bg-emerald-200 rounded-lg px-2 py-3 text-sm text-gray-600' onClick={handleClickLokasiKantor}>
+                        <div className="flex flex-col md:flex-row w-full md:w-1/2 gap-4 justify-center">
+                            <button className='bg-emerald-200 rounded-lg px-2 py-3 text-xs md:text-sm text-gray-600' onClick={handleClickLokasiKantor}>
                                 Lokasi Kantor Pemasaran
                             </button>
-                            <button className='bg-gray-200 rounded-lg px-2 py-3 text-sm text-emerald-600' onClick={handleClickHubungi}>
+                            <button className='bg-gray-200 rounded-lg px-2 py-3 text-xs md:text-sm text-emerald-600' onClick={handleClickHubungi}>
                                 Hubungi Kami Via Whatsapp
                             </button>
                         </div>
@@ -661,16 +673,16 @@ export default function Home() {
                 </div>
 
                 {/* Quotes */}
-                <div className="flex flex-col mx-8 p-10 mb-0 items-center">
-                    <p className='text-2xl w-1/2 text-center mb-2' data-aos='fade-up' data-aos-duration="1000">
-                        <span className='text-5xl font-extrabold text-gray-300 font-sans'>&quot;</span>
+                <div className="flex flex-col mx-2 md:mx-8 p-5 md:p-10 mb-0 items-center">
+                    <p className='text-base md:text-2xl w-full md:w-1/2 text-center mb-2' >
+                        <span className='text-xl md:text-5xl font-extrabold text-gray-300 font-sans'>&quot;</span>
                         Rumah bukan hanya tentang di mana Anda berada, tetapi tentang siapa yang Anda temukan di dalamnya.
                     </p>
-                    <p className='text-lg text-gray-400' data-aos='fade-left' data-aos-duration="1100">
+                    <p className='text-sm md:text-lg text-gray-400'>
                         - Anthony Liccione
                     </p>
                 </div>
             </LandingPage>
-        </>
+        </div>
     )
 }

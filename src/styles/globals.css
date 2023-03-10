@@ -13,3 +13,162 @@
 .ant-menu-light.ant-menu-horizontal > .ant-menu-item:hover::after {
 	border-bottom-color: #10b981 !important;
 }
+
+.img_dots_service {
+	position: absolute;
+	width: 5rem;
+	right: 30rem;
+	transform: rotateZ(90deg);
+	top: 38rem;
+}
+
+.img_circle_service {
+	position: absolute;
+	width: 5rem;
+	top: 43rem;
+	right: 45rem;
+}
+
+.img_kotak_service {
+	position: absolute;
+	width: 1rem;
+	top: 40rem;
+	right: 10rem;
+}
+
+.img_dots_portofolio {
+	position: absolute;
+	width: 10rem;
+	right: 0;
+	top: 70rem;
+}
+
+.img_dots_product {
+	position: absolute;
+	width: 6rem;
+	right: 30rem;
+	transform: rotateZ(90deg);
+	top: 99rem;
+}
+
+.img_cirlce_product {
+	position: absolute;
+	width: 5rem;
+	top: 110rem;
+	right: 45rem;
+}
+
+.img_dots_virtual_tour {
+	position: absolute;
+	width: 10rem;
+	left: 25rem;
+	top: 160rem;
+}
+
+.img_dots_faq {
+	position: absolute;
+	width: 10rem;
+	right: 0;
+	top: 225rem;
+}
+
+.img_kotak_1_faq {
+	position: absolute;
+	width: 1rem;
+	left: 5rem;
+	top: 230rem;
+	transform: rotate(45deg);
+}
+
+.img_kotak_2_faq {
+	position: absolute;
+	width: 1rem;
+	left: 6rem;
+	top: 231rem;
+	transform: rotate(45deg);
+}
+
+.img_kotak_3_faq {
+	position: absolute;
+	width: 1rem;
+	left: 5rem;
+	top: 232rem;
+	transform: rotate(45deg);
+}
+
+.text_copyright {
+	font-size: 12px;
+}
+
+@media only screen and (max-width: 575.98px) {
+	.img_dots_service {
+		right: 0rem;
+		top: 35rem;
+	}
+
+	.img_circle_service {
+		position: absolute;
+		width: 5rem;
+		top: 36rem;
+		right: 10rem;
+	}
+
+	.img_kotak_service {
+		position: absolute;
+		width: 1rem;
+		top: 30rem;
+		right: 1rem;
+	}
+
+	.img_dots_portofolio {
+		width: 10rem;
+		top: 65rem;
+	}
+
+	.img_dots_product {
+		position: absolute;
+		width: 6rem;
+		right: 0rem;
+		transform: rotateZ(90deg);
+		top: 103rem;
+	}
+
+	.img_cirlce_product {
+		position: absolute;
+		width: 5rem;
+		top: 94rem;
+		right: 2rem;
+	}
+
+	.img_dots_virtual_tour {
+		position: absolute;
+		width: 6rem;
+		right: 0rem;
+		top: 140rem;
+	}
+
+	.img_dots_faq {
+		width: 8rem;
+		right: 0;
+		top: 225rem;
+	}
+
+	.img_kotak_1_faq {
+		left: 1rem;
+		top: 203rem;
+	}
+
+	.img_kotak_2_faq {
+		left: 0rem;
+		top: 204rem;
+	}
+
+	.img_kotak_3_faq {
+		left: 1rem;
+		top: 205rem;
+	}
+
+	.text_copyright {
+		font-size: 10px;
+	}
+}

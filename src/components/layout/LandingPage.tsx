@@ -6,7 +6,7 @@ export default function LandingPage({ children }: any) {
         <>
             <Navbar></Navbar>
 
-            <main className="mb-5">
+            <main className="md:mb-5 mb-1">
                 {children}
             </main>
 
