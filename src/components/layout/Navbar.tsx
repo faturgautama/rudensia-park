@@ -1,13 +1,10 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { handleClickWhatsapp } from '../../providers/Utility.provider';
 
 export default function Navbar() {
-    const router = useRouter();
-
     const [menu, setMenu] = useState([
         {
-            key: 'home',
+            key: 'beranda',
             label: (
                 // <Link href='/'>
                 //     Beranda
@@ -27,6 +24,16 @@ export default function Navbar() {
             title: 'Tentang Kami',
         },
         {
+            key: 'portofolio_kami',
+            label: (
+                // <Link href='/tentang-kami'>
+                //     Tentang Kami
+                // </Link>
+                'Portofolio Kami'
+            ),
+            title: 'Portofolio Kami',
+        },
+        {
             key: 'produk_rumah',
             label: (
                 // <Link href='/produk'>
@@ -35,6 +42,16 @@ export default function Navbar() {
                 'Produk Rumah'
             ),
             title: 'Produk Rumah',
+        },
+        {
+            key: 'virtual_tour',
+            label: (
+                // <Link href='/produk'>
+                //     Produk Rumah
+                // </Link>
+                'Virtual Tour'
+            ),
+            title: 'Virtual Tour',
         },
         {
             key: 'simulasi_kpr',
@@ -56,13 +73,25 @@ export default function Navbar() {
         setToggleNavbar(!toggleNavbar)
     };
 
-    useEffect(() => {
-        console.log(current);
-    }, [current]);
+    const handleClickMenu = (item: any) => {
+        setCurrent(item.key);
+
+        const el = document.getElementById(item.key) as HTMLElement;
+        const offset = item.key === 'virtual_tour' ? 50 : 80;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = el.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
 
     const handleClickHubungi = () => {
         handleClickWhatsapp('normal');
-    }
+    };
 
     return (
         <>
@@ -85,7 +114,11 @@ export default function Navbar() {
                             {
                                 menu.map((item) => (
                                     <li key={item.key}>
-                                        <a className={current === item.key ? 'cursor-pointer block py-2 pl-3 pr-4 text-white bg-emerald-400 rounded md:bg-transparent md:text-emerald-400 md:p-0 transition ease-in-out duration-300' : 'cursor-pointer block py-2 pl-3 pr-4 text-gray-400 rounded md:bg-transparent md:text-gray-400 md:p-0 transition ease-in-out duration-300'} aria-current="page" onClick={() => setCurrent(item.key)}>
+                                        <a className={
+                                            current === item.key
+                                                ? 'cursor-pointer block py-2 pl-3 pr-4 text-white bg-emerald-400 rounded md:bg-transparent md:text-emerald-400 md:p-0 transition ease-in-out duration-300'
+                                                : 'cursor-pointer block py-2 pl-3 pr-4 text-gray-400 rounded md:bg-transparent md:text-gray-400 md:p-0 transition ease-in-out duration-300'
+                                        } aria-current="page" onClick={() => handleClickMenu(item)}>
                                             {item.label}
                                         </a>
                                     </li>
